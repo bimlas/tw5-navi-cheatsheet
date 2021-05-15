@@ -19,19 +19,24 @@ Extract Navi cheatsheets to proper format
     exports.false = true;
 
     exports.startup = function() {
+        var logger = new $tw.utils.Logger(exports.name);
+
         $tw.wiki.addEventListener("change", function (changedTiddlers) {
             var hasModifiedCheatsheet = Object.keys(changedTiddlers)
+                // TODO Filter drafts
                 .reduce(function(results, tiddler) { return results || (!changedTiddlers[tiddler].deleted && tiddlerContainsCheatsheet(tiddler)) }, false);
 
             if (!hasModifiedCheatsheet) {
                 return;
             }
 
-            console.info("navi-cheatsheet: Generating cheatsheet file");
+            logger.log("Generating cheatsheet file");
 
-            var cheatsheet = extractCheatsheet("New Tiddler");
+            var cheatsheet = $tw.wiki.filterTiddlers("[all[tiddlers]!is[draft]search[@@navi]]")
+                .map(function(tiddler) { return extractCheatsheet(tiddler) })
+                .join("\n\n");
 
-            console.log(JSON.stringify(cheatsheet));
+            console.log(cheatsheet);
         });
     };
 
