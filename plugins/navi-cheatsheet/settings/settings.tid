@@ -1,0 +1,13 @@
+tags: $:/tags/ControlPanel
+title: $:/plugins/bimlas/navi-cheatsheet/settings/settings
+type: text/vnd.tiddlywiki
+caption: Navi cheatsheet
+
+<$list filter="[[$:/ControlPanel]!is[current]]">
+    Configuration for the plugin can be done from within the Navi cheatsheet tab in the [[ControlPanel|$:/ControlPanel]] as well.
+</$list>
+<$list filter="[[$:/ControlPanel]is[current]]">
+  Configuration for the [[Navi cheatsheet plugin|$:/plugins/bimlas/navi-cheatsheet]].
+</$list>
+
+|[[Navi directory|$:/config/navi-cheatsheet/settings/navi-directory]]<blockquote>Directory of Navi cheatsheet files</blockquote> |<$edit-text tiddler="$:/config/bimlas/navi-cheatsheet/navi-directory" default="" tag="input"/><br/>//For example `~/.local/share/navi/cheats` // |

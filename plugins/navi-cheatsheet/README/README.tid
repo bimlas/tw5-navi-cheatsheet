@@ -1,0 +1,18 @@
+tags:
+title: $:/plugins/bimlas/navi-cheatsheet/README/README
+type: text/vnd.tiddlywiki
+
+! Navi cheatsheets in your wiki
+
+* https://gitlab.com/...
+* https://github.com/...
+
+!! Installation instructions
+
+To add the plugin to your own ~TiddlyWiki5, just drag this link to the browser window:
+
+$:/plugins/bimlas/navi-cheatsheet
+
+For other installation options see the repositories above.
+
+//Select the next tab to continue.//
