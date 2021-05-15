@@ -7,6 +7,24 @@ type: text/vnd.tiddlywiki
 * https://gitlab.com/...
 * https://github.com/...
 
+```
+@@navi: list, of, tags;
+ ```
+# Comment, name of the snippet
+echo "<user_input> <default_value> <selection> <generated_list>"
+
+$ default_value: echo "123"
+$ selection: echo "456 789" | tr " " "\n"
+$ generated_list: ls $HOME
+
+# Multi line snippet
+if [[ true ]]; then
+  echo "<message>"
+fi
+ ```
+@@
+```
+
 !! Installation instructions
 
 To add the plugin to your own ~TiddlyWiki5, just drag this link to the browser window:
