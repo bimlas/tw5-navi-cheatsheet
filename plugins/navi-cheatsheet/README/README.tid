@@ -4,32 +4,52 @@ type: text/vnd.tiddlywiki
 
 ! Navi cheatsheets in your wiki
 
-* https://gitlab.com/...
-* https://github.com/...
+Access one-liners stored in [[Node.js TiddlyWiki|https://tiddlywiki.com/#TiddlyWiki%20on%20Node.js]] directly from the command line.
 
-```
-@@navi: list, of, tags;
- ```
-# Comment, name of the snippet
-echo "<user_input> <default_value> <selection> <generated_list>"
+* https://bimlas.gitlab.io/tw5-navi-cheatsheet (install)
+* https://gitlab.com/bimlas/tw5-navi-cheatsheet (main repository)
+* https://github.com/bimlas/tw5-navi-cheatsheet (mirror, ''please star if you like the plugin'')
 
-$ default_value: echo "123"
-$ selection: echo "456 789" | tr " " "\n"
-$ generated_list: ls $HOME
+[[Navi|https://github.com/denisidoro/navi]] is an interactive cheatsheet tool for the command-line: it allows you to browse through cheatsheets (that you may write yourself or download from maintainers) and execute commands. This is a great way to replace aliases, one-liners and short scripts with a searchable "snippet database".
 
-# Multi line snippet
-if [[ true ]]; then
-  echo "<message>"
-fi
- ```
-@@
-```
+Many keep these snippets in their notes in the description of the related program. Many keep these snippets in their notes in the description of the related program. This plugin helps you to access the snippets in your notes directly from the command line using Navi.
+
+To make a code block a Navi cheatsheet, simply add `navi: tags` [[CSS style|https://tiddlywiki.com/#Styles%20and%20Classes%20in%20WikiText]] to it and convert the formatting to [[Navi cheatsheet syntax|https://github.com/denisidoro/navi/blob/master/docs/cheatsheet_syntax.md]] (you do not have to enter the Navi `% tags` in the code, but you have to specify them in the `@@navi:` line).
+
+Let’s say the code snippet below (which converts a single HTML wiki to a Node.js wiki) is in your notes and you want to make it available from the command line ().
+
+<pre>
+&#96;&#96;&#96;
+$ npm install -g tiddlywiki
+$ tiddlywiki DIRNAME --init server
+$ tiddlywiki DIRNAME --load /PATH/TO/SINGLE_HTML_WIKI.html
+&#96;&#96;&#96;
+</pre>
+
+Converted to Navi cheatsheet format:
+
+<pre>
+&#64;&#64;navi: tiddlywiki;
+&#96;&#96;&#96;
+# Convert a single HTML wiki to a Node.js wiki
+npm install -g tiddlywiki;
+tiddlywiki &lt;dirname&gt; --init server;
+tiddlywiki &lt;dirname&gt; --load &lt;path_to_single_html_wiki&gt;;
+&#96;&#96;&#96;
+&#64;&#64;
+</pre>
+
+Do not forget about the trailing semicolon on the end of the `@@navi` line.
+
+When you save the change, the snippet is immediately available in Navi.
 
 !! Installation instructions
 
-To add the plugin to your own ~TiddlyWiki5, just drag this link to the browser window:
+To add the plugin to your own Node.js based ~TiddlyWiki5, just drag this link to the browser window and restart the server, refreshing the page is not enough:
 
 $:/plugins/bimlas/navi-cheatsheet
+
+''The plugin does not work in the single HTML wiki, you must first [[convert it to a Node.js wiki|https://tiddlywiki.com/#Using%20TiddlyWiki%20on%20Node.js]].''
 
 For other installation options see the repositories above.
 

@@ -12,14 +12,17 @@ For details, see the link:{demo-page}[demo page].
 === Drag-n-drop
 
 - Open the link:{demo-page}[demo page]
-- Drag-n-drop the plugin tiddler in to your wiki
+- Drag-n-drop the plugin tiddler in to your Node.js wiki
+- Restart the server, refreshing the page is not enough
 
 === Download as JSON
 
 - Download the link:{json}[JSON archive of the plugin] (_Right click -> Save as_)
-- Drag-n-drop the file in to your wiki
+- Drag-n-drop the file in to your Node.js wiki
+- Restart the server, refreshing the page is not enough
 
 === Copy to directory based (Node.js) wiki
 
 - Clone or download this repository
 - Copy the `plugins` directory to the root directory of your wiki
+- Restart the server, refreshing the page is not enough
