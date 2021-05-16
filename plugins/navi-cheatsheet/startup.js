@@ -15,8 +15,8 @@ Extract Navi cheatsheets to proper format
     // Export name and synchronous status
     exports.name = "navi-cheatsheet";
     exports.platforms = ["node"];
-    exports.after = ["startup"];
-    exports.false = true;
+    exports.after = ["story"];
+    exports.synchronous = false;
 
     exports.startup = function() {
         var
