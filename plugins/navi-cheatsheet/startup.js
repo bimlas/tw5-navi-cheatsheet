@@ -25,11 +25,12 @@ Extract Navi cheatsheets to proper format
 		    os = require("os");
 
         $tw.wiki.addEventListener("change", function (changedTiddlers) {
-            var hasModifiedCheatsheet = Object.keys(changedTiddlers)
-                // TODO Filter drafts
-                .reduce(function(results, tiddler) { return results || (!changedTiddlers[tiddler].deleted && tiddlerContainsCheatsheet(tiddler)) }, false);
+            var requiresUpdate = false
+             $tw.utils.each(changedTiddlers, function(tiddler, title) {
+                requiresUpdate = requiresUpdate || (!tiddler.deleted && !$tw.wiki.getTiddler(title).hasField("draft.of") && tiddlerContainsCheatsheet(title));
+             })
 
-            if (!hasModifiedCheatsheet) {
+            if (!requiresUpdate) {
                 return;
             }
 
