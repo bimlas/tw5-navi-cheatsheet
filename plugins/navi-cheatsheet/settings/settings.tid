@@ -10,4 +10,4 @@ caption: Navi cheatsheet
   Configuration for the [[Navi cheatsheet plugin|$:/plugins/bimlas/navi-cheatsheet]].
 </$list>
 
-|[[Navi directory|$:/config/navi-cheatsheet/settings/navi-directory]]<blockquote>Directory of Navi cheatsheet files</blockquote> |<$edit-text tiddler="$:/config/bimlas/navi-cheatsheet/navi-directory" default="" tag="input"/><br/>//For example `~/.local/share/navi/cheats` // |
+|[[Navi file|$:/config/navi-cheatsheet/settings/navi-file]]<blockquote>Path of Navi cheatsheet file</blockquote> |<$edit-text tiddler="$:/config/bimlas/navi-cheatsheet/navi-file" default="" tag="input"/><br/>//For example `~/.local/share/navi/cheats/tiddlywiki.cheat` // |

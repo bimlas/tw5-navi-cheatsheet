@@ -19,7 +19,10 @@ Extract Navi cheatsheets to proper format
     exports.false = true;
 
     exports.startup = function() {
-        var logger = new $tw.utils.Logger(exports.name);
+        var
+            logger = new $tw.utils.Logger(exports.name),
+            fs = require("fs"),
+		    os = require("os");
 
         $tw.wiki.addEventListener("change", function (changedTiddlers) {
             var hasModifiedCheatsheet = Object.keys(changedTiddlers)
@@ -36,7 +39,9 @@ Extract Navi cheatsheets to proper format
                 .map(function(tiddler) { return extractCheatsheet(tiddler) })
                 .join("\n\n");
 
-            console.log(cheatsheet);
+            var filepath = $tw.wiki.getTiddler("$:/config/bimlas/navi-cheatsheet/navi-file").fields.text.trim().replace("~", os.homedir);
+            $tw.utils.createFileDirectories(filepath);
+            fs.writeFileSync(filepath,cheatsheet,"utf8");
         });
     };
 
