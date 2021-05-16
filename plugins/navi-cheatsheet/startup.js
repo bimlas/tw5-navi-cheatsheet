@@ -33,13 +33,13 @@ Extract Navi cheatsheets to proper format
                 return;
             }
 
-            logger.log("Generating cheatsheet file");
+            var filepath = $tw.wiki.getTiddler("$:/config/bimlas/navi-cheatsheet/navi-file").fields.text.trim().replace("~", os.homedir);
+            logger.log("Writing cheatsheet file: " + filepath);
 
             var cheatsheet = $tw.wiki.filterTiddlers("[all[tiddlers]!is[draft]search[@@navi]]")
                 .map(function(tiddler) { return extractCheatsheet(tiddler) })
                 .join("\n\n");
 
-            var filepath = $tw.wiki.getTiddler("$:/config/bimlas/navi-cheatsheet/navi-file").fields.text.trim().replace("~", os.homedir);
             $tw.utils.createFileDirectories(filepath);
             fs.writeFileSync(filepath,cheatsheet,"utf8");
         });
