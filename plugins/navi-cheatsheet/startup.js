@@ -3,7 +3,7 @@ title: $:/plugins/bimlas/navi-cheatsheet/startup.js
 type: application/javascript
 module-type: startup
 
-Extract Navi cheatsheets to proper format
+Extract Navi cheatsheets to specified path
 
 \*/
 (function() {
@@ -19,43 +19,68 @@ Extract Navi cheatsheets to proper format
     exports.synchronous = false;
 
     exports.startup = function() {
-        var
-            logger = new $tw.utils.Logger(exports.name),
-            fs = require("fs"),
-		    os = require("os");
+        var logger = new $tw.utils.Logger(exports.name);
+        var fs = require("fs");
+		var os = require("os");
 
         $tw.wiki.addEventListener("change", function (changedTiddlers) {
-            var requiresUpdate = false
-             $tw.utils.each(changedTiddlers, function(tiddler, title) {
-                requiresUpdate = requiresUpdate || (!tiddler.deleted && !$tw.wiki.getTiddler(title).hasField("draft.of") && tiddlerContainsCheatsheet(title));
-             })
+            var blockIdentifier = "navi"
 
-            if (!requiresUpdate) {
+            if (!Object.keys(changedTiddlers).reduce(hasTiddlerWithCheatsheet, false)) {
                 return;
             }
 
-            var filepath = $tw.wiki.getTiddler("$:/config/bimlas/navi-cheatsheet/navi-file").fields.text.trim().replace("~", os.homedir);
-            logger.log("Writing cheatsheet file: " + filepath);
-
-            var cheatsheet = $tw.wiki.filterTiddlers("[all[tiddlers]!is[draft]search[@@navi]]")
-                .map(function(tiddler) { return extractCheatsheet(tiddler) })
+            var cheatsheet = $tw.wiki
+                .filterTiddlers("[all[tiddlers]!is[shadow]!is[draft]search[@@" + blockIdentifier + ":]]")
+                .map(extractCheatsheet)
+                .reduce(flattenArray, [])
                 .join("\n\n");
+            var filepath = $tw.wiki
+                .getTiddlerText("$:/config/bimlas/navi-cheatsheet/navi-file")
+                .trim().replace("~", os.homedir);
+
+            logger.log("Writing cheatsheet file: " + filepath);
 
             $tw.utils.createFileDirectories(filepath);
             fs.writeFileSync(filepath,cheatsheet,"utf8");
+
+            function hasTiddlerWithCheatsheet(results, title) {
+                if (changedTiddlers[title].deleted) {
+                    return results;
+                }
+                var tiddler = $tw.wiki.getTiddler(title);
+                var containsCheatsheet = tiddler.fields.text.search("@@" + blockIdentifier + ":") >= 0;
+                var isDraft = tiddler.hasField("draft.of");
+                return results || (!isDraft && containsCheatsheet);
+            }
+
+            function extractCheatsheet(tiddler) {
+                return $tw.wiki
+                    .parseTextReference(tiddler, "text", undefined, {}).tree
+                    .filter(isCodeblock)
+                    .filter(isCheatsheetBlock)
+                    .map(convertToCheatsheetFormat);
+            }
+
+            function flattenArray(results, current) {
+                 return results.concat(current);
+            }
+
+            function isCodeblock(block) {
+                return block.type === "codeblock";
+            }
+
+            function isCheatsheetBlock(codeblock) {
+                return $tw.utils.hop(codeblock.attributes, "style")
+                    && codeblock.attributes.style.value.startsWith(blockIdentifier + ":");
+            }
+
+            function convertToCheatsheetFormat(elem) {
+                var regexp = new RegExp(blockIdentifier + ":\\s*(.*);")
+                return "% " + elem.attributes.style.value.replace(regexp, "$1")
+                    + "\n\n"
+                    + elem.attributes.code.value;
+            }
         });
     };
-
-    function tiddlerContainsCheatsheet(tiddler) {
-        return $tw.wiki.getTiddler(tiddler).fields.text.search("@@navi") >= 0;
-    }
-
-    function extractCheatsheet(tiddler) {
-        return $tw.wiki.parseTextReference(tiddler, "text", undefined, {}).tree
-            .filter(function(block) { return block.type === "codeblock" })
-            .filter(function(codeblock) { return $tw.utils.hop(codeblock.attributes, "style") && codeblock.attributes.style.value.startsWith("navi:") })
-            .map(function(current) { return "% " + current.attributes.style.value.replace(/navi:\s*(.*);/, "$1") + "\n\n" + current.attributes.code.value })
-            .join("\n\n");
-    }
-
 })();
