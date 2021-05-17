@@ -6,7 +6,7 @@ module-type: startup
 Extract Navi cheatsheets to specified path
 
 \*/
-(function() {
+(function () {
 
     /*jslint node: true, browser: false */
     /*global $tw: true */
@@ -18,10 +18,10 @@ Extract Navi cheatsheets to specified path
     exports.after = ["story"];
     exports.synchronous = false;
 
-    exports.startup = function() {
+    exports.startup = function () {
         var logger = new $tw.utils.Logger(exports.name);
         var fs = require("fs");
-		var os = require("os");
+        var os = require("os");
 
         $tw.wiki.addEventListener("change", function (changedTiddlers) {
             var blockIdentifier = "navi"
@@ -42,7 +42,7 @@ Extract Navi cheatsheets to specified path
             logger.log("Writing cheatsheet file: " + filepath);
 
             $tw.utils.createFileDirectories(filepath);
-            fs.writeFileSync(filepath,cheatsheet,"utf8");
+            fs.writeFileSync(filepath, cheatsheet, "utf8");
 
             function hasTiddlerWithCheatsheet(results, title) {
                 if (changedTiddlers[title].deleted) {
@@ -63,7 +63,7 @@ Extract Navi cheatsheets to specified path
             }
 
             function flattenArray(results, current) {
-                 return results.concat(current);
+                return results.concat(current);
             }
 
             function isCodeblock(block) {
