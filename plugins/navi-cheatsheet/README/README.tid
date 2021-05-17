@@ -51,6 +51,6 @@ $:/plugins/bimlas/navi-cheatsheet
 
 ''The plugin does not work in the single HTML wiki, you must first [[convert it to a Node.js wiki|https://tiddlywiki.com/#Using%20TiddlyWiki%20on%20Node.js]].''
 
-For other installation options see the repositories above.
+Check the path of the Navi cheatsheet file in the settings (next tab) after the installation of the plugin.
 
-//Select the next tab to continue.//
+For other installation options see the repositories above.
