@@ -14,6 +14,10 @@ Invoke snippets and one-liners stored in [[Node.js TiddlyWiki|https://tiddlywiki
 
 Many keep these snippets in their own description of the related program. This plugin helps you to access the snippets in your notes directly from the command line using Navi.
 
+You can keep the snippets among your notes, so you can give a more detailed explanation, and they will be categorized due to the structure and of your notes (table of contents, links, etc.). If, on the other hand, you need the code snippet on the command line, you don't have to search through your notes, just search for the right keywords in Navi.
+
+Its advantage over keeping snippets in a separate Navi cheatsheet file is that there is no duplication: if you realize that you need to add another parameter to a command in a snippet, you only have to edit it in your notes, but you don't have to update the separate Navi file as well.
+
 To transform a code block into a Navi cheatsheet, simply add `navi: tags` [[CSS style|https://tiddlywiki.com/#Styles%20and%20Classes%20in%20WikiText]] to it and convert the formatting to [[Navi cheatsheet syntax|https://github.com/denisidoro/navi/blob/master/docs/cheatsheet_syntax.md]] (you do not have to enter the Navi `% tags` in the code, instead you have to specify them in the `@@navi:` line).
 
 Let’s say the code snippet below (which converts a single HTML wiki to a Node.js wiki) is in your notes and you want to make it available from the command line.
