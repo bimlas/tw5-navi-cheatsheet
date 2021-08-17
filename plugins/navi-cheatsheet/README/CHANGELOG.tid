@@ -1,0 +1,13 @@
+tags:
+title: $:/plugins/bimlas/navi-cheatsheet/README/CHANGELOG
+type: text/vnd.tiddlywiki
+
+!! 1.0.1
+
+[[See GitLab for detailed change history of this release|https://gitlab.com/bimlas/tw5-locator/compare/v1.0.0...v1.0.1]]
+
+* Threw an error when saving tiddlers without `text` field
+
+!! 1.0.0
+
+* First public release

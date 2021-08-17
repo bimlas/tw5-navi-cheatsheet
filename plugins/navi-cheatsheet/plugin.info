@@ -2,9 +2,9 @@
 	"title": "$:/plugins/bimlas/navi-cheatsheet",
 	"description": "Navi cheatsheets in your wiki",
 	"author": "bimlas",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"core-version": ">=5.1.23",
 	"source": "https://gitlab.com/bimlas/tw5-navi-cheatsheet",
 	"plugin-type": "plugin",
-	"list": "README/README settings/settings"
+	"list": "README/README settings/settings README/CHANGELOG"
 }

@@ -49,6 +49,9 @@ Extract Navi cheatsheets to specified path
                     return results;
                 }
                 var tiddler = $tw.wiki.getTiddler(title);
+                if (!tiddler.hasField("text")) {
+                    return results;
+                }
                 var containsCheatsheet = tiddler.fields.text.search("@@" + blockIdentifier + ":") >= 0;
                 var isDraft = tiddler.hasField("draft.of");
                 return results || (!isDraft && containsCheatsheet);
