@@ -6,9 +6,8 @@ type: text/vnd.tiddlywiki
 
 Invoke snippets and one-liners stored in [[Node.js TiddlyWiki|https://tiddlywiki.com/#TiddlyWiki%20on%20Node.js]] directly from the command line.
 
-* https://bimlas.gitlab.io/tw5-navi-cheatsheet (install)
-* https://gitlab.com/bimlas/tw5-navi-cheatsheet (main repository)
-* https://github.com/bimlas/tw5-navi-cheatsheet (mirror, ''please star if you like the plugin'')
+* https://bimlas.github.io/tw5-navi-cheatsheet (install)
+* https://github.com/bimlas/tw5-navi-cheatsheet (''please star if you like the plugin'')
 
 [[Navi|https://github.com/denisidoro/navi]] is an interactive cheatsheet tool for the command-line: it allows you to browse through cheatsheets (that you may write yourself or download from maintainers) and execute commands. This is a great way to replace aliases, one-liners and short scripts with a searchable "snippet database".
 

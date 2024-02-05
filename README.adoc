@@ -1,12 +1,11 @@
-:demo-page: https://bimlas.gitlab.io/tw5-navi-cheatsheet/
-:json: https://bimlas.gitlab.io/tw5-navi-cheatsheet/tw5-navi-cheatsheet.json
+:demo-page: https://bimlas.github.io/tw5-navi-cheatsheet/
+:json: https://bimlas.github.io/tw5-navi-cheatsheet/tw5-navi-cheatsheet.json
 
 = Navi cheatsheet plugin for TiddlyWiki 5
 
 For details, see the link:{demo-page}[demo page].
 
-* https://gitlab.com/bimlas/tw5-navi-cheatsheet/ (official repository)
-* https://github.com/bimlas/tw5-navi-cheatsheet/ (mirror, *please star if you like the plugin*)
+* https://github.com/bimlas/tw5-navi-cheatsheet/ (*please star if you like the plugin*)
 
 == How to install?
 
